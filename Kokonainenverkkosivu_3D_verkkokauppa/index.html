@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<title>3DD</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/templates_ready_code.js"></script>
+<script type="text/javascript" src="js/own_code.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/custom.css">
+<body id="myPage">
+
+<!-- Sidebar on click -->
+<nav class="w3-sidebar w3-bar-block w3-card-2 w3-animate-top w3-medium" style="display:none;z-index:2" id="mySidebar">
+  <h3 class="w3-display-topleft" style="width:80%;text-align:center;margin:0;">Cart</h3>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-display-topright w3-text-deep-orange" style="width:20%">
+    <i class="fa fa-remove"></i>
+  </a>
+  <br/>
+  <div id="list">
+		
+  </div>
+  <div id="allProducts" class="w3-container w3-display-bottomleft w3-center w3-deep-orange"></div>
+  <button id="checkIn" class="w3-button w3-deep-orange w3-display-bottomright">Check In</button>
+</nav>
+
+<!-- Check In Modal -->
+<div id="checkInModal" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-top">
+    <header class="w3-container w3-deep-orange w3-display-container"> 
+      <span id="closeCheckModal" class="w3-button w3-deep-orange w3-display-topright"><i class="fa fa-remove"></i></span>
+      <h3>Information</h3>
+	  <p>Almost there!</p>
+    </header>
+    <div class="w3-container">
+        <div class="w3-col m7">
+		  <form class="w3-container w3-card-4 w3-padding-16 w3-white">
+		  <div class="w3-section">      
+			<label>Name</label>
+			<input id="oName" class="w3-input" type="text" name="Name" required>
+		  </div>
+		  <div class="w3-section">      
+			<label>Email</label>
+			<input id="oEmail" class="w3-input" type="Email" name="Email" required>
+			<label>Phone</label>
+			<input id="oPhone" class="w3-input" type="Number" name="PhoneNumber" required>
+		  </div>
+		  <div class="w3-section">      
+			<label>Address</label>
+			<input id="oAddress" class="w3-input" type="text" name="Address" required>
+		  </div>
+		  <button id="endOrder" type="button" class="w3-button w3-right w3-theme">Order</button>
+		  </form>
+		</div>
+    </div>
+    <footer class="w3-container w3-deep-orange">
+    
+    </footer>
+  </div>
+</div>
+
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align">
+  <a id="shopCart" class="w3-bar-item w3-button w3-right w3-hover-deep-orange w3-theme-d2" onclick="w3_open()"><i class="fa fa-shopping-cart"></i></a>
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-deep-orange w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-deep-orange"><i class="fa fa-cube w3-margin-right"></i>3DD</a>
+  <a href="#team" class="w3-bar-item w3-button w3-hide-small w3-hover-deep-orange">Team</a>
+  <a href="#work" class="w3-bar-item w3-button w3-hide-small w3-hover-deep-orange">Most Wanted</a>
+  <a href="#pricing" class="w3-bar-item w3-button w3-hide-small w3-hover-deep-orange">Products</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-hover-deep-orange">Contact</a>
+ </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+    <a onclick="menuClose()" id="navteam" href="#team" class="w3-bar-item w3-button">Team</a>
+    <a onclick="menuClose()" href="#work" class="w3-bar-item w3-button">Most Wanted</a>
+    <a onclick="menuClose()" href="#pricing" class="w3-bar-item w3-button">Products</a>
+    <a onclick="menuClose()" href="#contact" class="w3-bar-item w3-button">Contact</a>
+  </div>
+</div>
+
+<!-- Image Header -->
+<div class="w3-display-container w3-animate-opacity">
+  <img src="img/header.jpg" alt="header" style="width:100%;">
+  <div class="w3-container w3-display-middle w3-margin-bottom">  
+    <button onclick="infoOpen();" class="w3-button w3-xlarge w3-theme w3-hover-deep-orange" title="Header">What is 3DD?</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-top">
+    <header class="w3-container w3-deep-orange w3-display-container"> 
+      <span onclick="infoClose();" class="w3-button w3-deep-orange w3-display-topright"><i class="fa fa-remove"></i></span>
+      <h3>3DD</h3>
+    </header>
+    <div class="w3-container">
+      <p>We are selling 3D printing objects with custom order possibilities because what would be greater than order with
+	  your own 3D model???</p>
+    </div>
+    <footer class="w3-container w3-deep-orange">
+      <p>Go check our <a href="#pricing" onclick="infoClose();"> store</a> there are so many cool 3D printed objects!</p>
+    </footer>
+  </div>
+</div>
+
+<!-- Work Row -->
+<div class="w3-row-padding w3-padding-64 w3-theme-l1" id="work">
+
+<div class="w3-col s12">
+<h2>Most wanted products of our own</h2>
+<p>These are the newest products which are included to our selection.</p>
+</div>
+
+<div class="w3-col s12 m4">
+<div class="w3-card-2 w3-white">
+  <img src="img/product1.jpg" alt="product1" style="width:100%">
+  <div class="w3-container">
+  <h3>The Star Lamp </h3>
+  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+  <h4 class="price">40€</h4>
+  <label>Quantity</label>
+  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+  <p class="description">This Lamp is made from plastic it was designed by our 3DD team.</p>
+  </div>
+  </div>
+</div>
+
+<div class="w3-col s12 m4">
+	<div class="w3-card-2 w3-white">
+	  <img src="img/product3.jpg" alt="Cinque Terre" style="width:100%">
+	  <div class="w3-container">
+		  <h3>Silver/Gold Set</h3>
+		  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+		  <h4 class="price">70€</h4>
+		  <label>Quantity</label>
+		  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+		  <p>This set of forks, spoons and knives are covered with silver and gold.</p>
+	  </div>
+	</div>
+</div>
+
+<div class="w3-col s12 m4">
+	<div class="w3-card-2 w3-white">
+	  <img src="img/product2.jpg" alt="Monterosso" style="width:100%">
+	  <div class="w3-container">
+		  <h3>Cool Ring</h3>
+		  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+		  <h4 class="price">15€</h4>
+		  <label>Quantity</label>
+		  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+		  <p class="description">Punk style ring for everyone the ring is made from metal.</p>
+	  </div>
+	</div>
+</div>
+
+</div>
+
+<!-- Product Tabs -->
+
+ <div id="pricing" class="w3-bar w3-black">
+  <h1 class="w3-bar w3-deep-orange w3-center">Products</h1>
+  <button class="w3-bar-item w3-button tablink w3-deep-orange" onclick="openTab(event,'Home')">Home</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openTab(event,'Office')">Office</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openTab(event,'Custom')">Custom</button>
+</div>
+<div id="Home" class="tab w3-container w3-border">
+  <h2>Home</h2>
+  <h3>All to make your home feel more comfortable.</h3>
+  <div class="w3-col s6 m4 l3">
+	<div class="w3-card-2 w3-white">
+	  <img src="img/home_product1.jpg" alt="Home" style="width:100%">
+	  <div class="w3-container">
+	  <h3>Penta Lamp</h3>
+	  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+	  <h4 class="price">35€</h4>
+	  <label>Quantity</label>
+	  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+	  <p class="description">Want some old school look?</p>
+	  </div>
+	  </div>
+  </div>
+  <div class="w3-col s6 m4 l3">
+	<div class="w3-card-2 w3-white">
+	  <img src="img/home_product2.jpg" alt="Home" style="width:100%; height:auto;">
+	  <div class="w3-container">
+	  <h3>Circle Lamp</h3>
+	  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+	  <h4 class="price">25€</h4>
+	  <label>Quantity</label>
+	  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+	  <p class="description">Some modern look</p>
+	  </div>
+	  </div>
+  </div>
+  <div class="w3-col s6 m4 l3">
+	<div class="w3-card-2 w3-white">
+	  <img src="img/home_product3.jpg" alt="Home" style="width:100%">
+	  <div class="w3-container">
+	  <h3>Tree Lamp</h3>
+	  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+	  <h4 class="price">60€</h4>
+	  <label>Quantity</label>
+	  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+	  <p class="description">Table lamp with forest design.</p>
+	  </div>
+	  </div>
+  </div>
+  <div class="w3-col s6 m4 l3">
+	<div class="w3-card-2 w3-white">
+	  <img src="img/home_product4.jpg" alt="Home" style="width:100%">
+	  <div class="w3-container">
+	  <h3>Bunny Lamp</h3>
+	  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+	  <h4 class="price">15€</h4>
+	  <label>Quantity</label>
+	  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+	  <p class="description">Of course don't forget your kids!</p>
+	  </div>
+	  </div>
+  </div>
+  <div class="w3-col s6 m4 l3">
+	<div class="w3-card-2 w3-white">
+	  <img src="img/home_product5.jpg" alt="Home" style="width:100%">
+	  <div class="w3-container">
+	  <h3>Uber Lamp</h3>
+	  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+	  <h4 class="price">20€</h4>
+	  <label>Quantity</label>
+	  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+	  <p class="description">This lamp is favourite to all wallets!</p>
+	  </div>
+	  </div>
+  </div>
+  <div class="w3-col s6 m4 l3">
+	<div class="w3-card-2 w3-white">
+	  <img src="img/home_product6.jpg" alt="Home" style="width:100%">
+	  <div class="w3-container">
+	  <h3>Ball Lamp</h3>
+	  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+	  <h4 class="price">75€</h4>
+	  <label>Quantity</label>
+	  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+	  <p class="description">If you're not fan of square try this!</p>
+	  </div>
+	  </div>
+  </div>
+</div>
+
+<div id="Office" class="w3-container w3-border tab" style="display:none">
+  <h2>Office</h2>
+  <h3>All what you need to office.</h3>
+  <div class="w3-col s6 m6 l3">
+	<div class="w3-card-2 w3-white">
+	  <img src="img/office_product1.jpg" alt="Office" style="width:100%">
+	  <div class="w3-container">
+	  <h3>Pencil Pot</h3>
+	  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+	  <h4 class="price">10€</h4>
+	  <label>Quantity</label>
+	  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+	  <p class="description">Keep your pens organized always.</p>
+	  </div>
+	  </div>
+  </div>
+  <div class="w3-col s6 m6 l3">
+	<div class="w3-card-2 w3-white">
+	  <img src="img/office_product2.jpg" alt="Office" style="width:100%; height:auto;">
+	  <div class="w3-container">
+	  <h3>P Rocket</h3>
+	  <button class="w3-button w3-right w3-hover-deep-orange product"><i class="fa fa-plus"></i></button>
+	  <h4 class="price">15€</h4>
+	  <label>Quantity</label>
+	  <input class="w3-input w3-animate-input" type="number" style="width:20%; max-width:40%;" value="1">
+	  <p class="description">With longer pencil is easy to write.</p>
+	  </div>
+	  </div>
+  </div>
+</div>
+
+<div id="Custom" class="w3-container w3-border tab" style="display:none">
+  <h2>Custom</h2>
+  <h3>Here you can make custom order with your own design.<strong class="w3-alert"> Remember our unit of measure is cm!</strong></h3>
+  <p><strong>Note!!</strong> You will get custom orders estimated price to your mail!</p>
+  <div class="w3-container w3-padding-64 w3-theme-l5">
+  <div class="w3-row">
+    <div class="w3-col m5">
+    <h4>Be as specific as possible with the information</h4>
+    </div>
+    <div class="w3-col m7">
+      <form class="w3-container w3-card-4 w3-padding-16 w3-white">
+      <div class="w3-section">      
+        <label>Name</label>
+        <input id="customName" class="w3-input" type="text" name="Name" required>
+      </div>
+      <div class="w3-section">      
+        <label>Height</label>
+        <input id="customHeight" class="w3-input" type="Number" name="Height" required>
+		<label>Width</label>
+        <input id="customWidth" class="w3-input" type="Number" name="Width" required>
+      </div>
+      <div class="w3-section">      
+        <label>Description</label>
+        <input id="customDescript" class="w3-input" type="text" name="Description" required>
+      </div>
+	  <div class="w3-section">      
+        <label>Quantity</label>
+        <input id="customQuantity" class="w3-input" type="Number" name="Quantity" required>
+      </div>
+      <button id="customOrder" type="button" class="w3-button w3-right w3-theme">Order</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Team Container -->
+<div class="w3-container w3-padding-64 w3-center" id="team">
+<h2>OUR 3DD</h2>
+<p>Meet the 3DD - our experts of 3D printing:</p>
+
+<div class="w3-row"><br>
+
+<div class="w3-quarter">
+  <img src="img/johnny.jpg" alt="Worker" style="width:45%" class="w3-circle w3-hover-opacity">
+  <h3>Johnny Walker</h3>
+  <p>3D Modeling Expert</p>
+</div>
+
+<div class="w3-quarter">
+  <img src="img/jan.jpg" alt="Support" style="width:45%" class="w3-circle w3-hover-opacity">
+  <h3>Jan Ringo</h3>
+  <p>Support</p>
+</div>
+
+<div class="w3-quarter">
+  <img src="img/rebecca.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+  <h3>Rebecca Flex</h3>
+  <p>Boss man</p>
+</div>
+
+<div class="w3-quarter">
+  <img src="img/kai.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+  <h3>Kai Ringo</h3>
+  <p>3D Machine Expert</p>
+</div>
+
+</div>
+</div>
+
+<!-- Contact Container -->
+<div class="w3-container w3-padding-64 w3-theme-l5" id="contact">
+  <div class="w3-row">
+    <div class="w3-col m5">
+    <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar">Contact Us</span></div>
+      <h3>Info</h3>
+      <p>Come to check out our workshop!</p>
+      <p><i class="fa fa-map-marker w3-text-deep-orange w3-xlarge"></i>  Mikkeli, FIN</p>
+      <p><i class="fa fa-phone w3-text-deep-orange w3-xlarge"></i>  +358 206546534</p>
+      <p><i class="fa fa-envelope-o w3-text-deep-orange w3-xlarge"></i>  support@3DD.com</p>
+    </div>
+    <div class="w3-col m7">
+      <form class="w3-container w3-card-4 w3-padding-16 w3-white">
+      <div class="w3-section">      
+        <label>Name</label>
+        <input id="cName" class="w3-input w3-hover-light-gray" type="text" name="Name" required>
+      </div>
+      <div class="w3-section">      
+        <label>Message</label>
+        <input id="cMessage" class="w3-input w3-hover-light-gray" type="text" name="Message" required>
+      </div>  
+      <button id="contactSend" type="button" class="w3-button w3-right w3-theme">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Contact Reply Modal -->
+<div id="contactReply" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-top">
+    <header class="w3-container w3-deep-orange w3-display-container"> 
+      <span onclick="infoClose();" class="w3-button w3-deep-orange w3-display-topright"><i class="fa fa-remove"></i></span>
+      <h3>3DD</h3>
+    </header>
+    <div class="w3-container">
+      <p>Thank you for reply!</p>
+    </div>
+    <footer class="w3-container w3-deep-orange">
+      <p>Go check our <a href="#pricing" onclick="infoClose();"> store</a> there are so many cool 3D printed objects!</p>
+    </footer>
+  </div>
+</div>
+
+<!-- Order Reply Modal -->
+<div id="orderReply" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-top">
+    <header class="w3-container w3-deep-orange w3-display-container"> 
+      <span onclick="allClose();" class="w3-button w3-deep-orange w3-display-topright"><i class="fa fa-remove"></i></span>
+      <h3>3DD</h3>
+    </header>
+    <div class="w3-container">
+      <p>Thank you!</p>
+    </div>
+    <footer class="w3-container w3-deep-orange">
+      <p>Hope we can do business again.</p>
+    </footer>
+  </div>
+</div>
+
+
+<!-- Order Error Reply Modal -->
+<div id="errorReply" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-top">
+    <header class="w3-container w3-deep-orange w3-display-container"> 
+      <span onclick="infoClose();" class="w3-button w3-deep-orange w3-display-topright"><i class="fa fa-remove"></i></span>
+      <h3>3DD</h3>
+    </header>
+    <div class="w3-container">
+      <p>Please check your information or some information is missing</p>
+    </div>
+    <footer class="w3-container w3-deep-orange">
+      <p> If this occurs even then when you have filled all information contact us at bottom of this page</p>
+    </footer>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
+  <h4>Follow Us</h4>
+  <a id="smLinks" class="w3-button w3-large w3-deep-orange w3-center" href="https://www.facebook.com/xamkfi/?fref=ts" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
+  <a id="smLinks" class="w3-button w3-large w3-deep-orange w3-center" href="https://twitter.com/xamkfi?lang=fi" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a>
+  <a id="smLinks" class="w3-button w3-large w3-deep-orange w3-center" href="https://www.instagram.com/xamkfi/" target="_blank" title="Instagram +"><i class="fa fa-instagram"></i></a>
+  
+  <div style="position:relative;bottom:70px;z-index:1;" class="w3-tooltip w3-right">   
+    <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
+    <i class="fa fa-chevron-circle-up"></i></span></a>
+  </div>
+</footer>
+
+</body>
+</html>

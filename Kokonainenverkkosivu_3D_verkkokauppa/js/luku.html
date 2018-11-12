@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>Palautteet ja TIlaukset 3DD</title>
+  </head>
+  <body>
+	<button id="tulostaPalautteet">Tulosta palautteet</button>
+	<button id="tulostaTilaukset">Tulosta tilaukset</button>
+	<br/>
+	<div id="palautteet"></div>
+  <script>
+  //Ohjelma hakee palvelimelta csv-muotoista dataa (pilkkueroteltu)
+	$(document).ready(function(){
+		//Tulostaa kaikki palautteet
+		$("#tulostaPalautteet").click(function(){
+			$.ajax({url: "palautteet.txt",
+						success: function(result) { //Haetaann palvelimelta tiedosto
+						tulostaLuettelo(result); //lähetetään palvelimelta tullut result parsittavaksi
+					},
+					error: function(xhr){
+					alert("Palautteita ei ole!");
+					}
+			});
+		});
+		//Kaikki tilaukset
+		$("#tulostaTilaukset").click(function(){
+			$.ajax({url: "tilaukset.txt",
+						success: function(tilausTxt) { //Haetaann palvelimelta tiedosto
+						tulostetaaTilaukset(tilausTxt); //lähetetään palvelimelta tullut result parsittavaksi
+					},
+					error: function(xhr){
+					alert("Tilauksia ei ole!");
+					}
+			});
+		});
+		
+	});
+
+	//Tulostusosa
+	function tulostaLuettelo(result){
+		console.log(result);
+		//parsitaan stringiä arrayksi
+		var rivit = [];
+		var rivi = [];
+		rivit = result.split(/\n/g); //pätkitään rivinvaihtomerkin kohdalta
+		var tulostus = "";
+		for(i = 0;i < rivit.length - 1;i++){
+			rivi = rivit[i].split(";"); //pätkitään etunimi, sukunimi ja puh 
+			tulostus +=  rivi[0] + "<br/>" + rivi[1] + "<br/>*************Seuraava Palaute************<br/>";
+		}
+		$("#palautteet").html(tulostus); 
+	}
+	
+	//Tulostusosa
+	function tulostetaaTilaukset(tilausTxt){
+		console.log(tilausTxt);
+		//parsitaan stringiä arrayksi
+		var rivit = [];
+		var rivi = [];
+		rivit = tilausTxt.split(/\n/g); //pätkitään rivinvaihtomerkin kohdalta
+		var tulostus = "";
+		for(i = 0;i < rivit.length - 1;i++){
+			rivi = rivit[i].split(";");
+			tulostus +=  rivi[0] + "<br/>" + rivi[1] + "<br/>" + rivi[2] + "<br/>" + rivi[3] + "<br/>" + rivi[4] + "<br/>*************Seuraava Tilaus************<br/>";
+		}
+		$("#palautteet").html(tulostus); 
+	}
+
+	
+			
+	</script>
+  </body>
+</html>
+
+
+
+

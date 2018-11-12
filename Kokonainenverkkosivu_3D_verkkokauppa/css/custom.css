@@ -1,0 +1,22 @@
+#deleteFromCart
+{
+	float:left;
+	width:20%;
+}
+#list > li
+{
+	width:80%;
+	float:left;
+}
+#smLinks
+{
+	margin-left: 10%;
+}
+#pricing
+{
+	padding-top:50px;
+}
+#mySideBar
+{
+	padding-top:3% !important;
+}
